@@ -11,7 +11,20 @@ namespace CardsListAndComparerTest
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello C# 14.0 and higher!");
+            List<Card> cards = new List<Card>();
+            Console.Write("Enter number of cards: ");
+            if (int.TryParse(Console.ReadLine(), out int numberOfCards) && (numberOfCards >= 0))
+            {
+                for (int i = 0; i < numberOfCards; i++)
+                {
+                    cards.Add(RandomCard());
+                }
+                PrintCards(cards);
+                CardComparer comparer = new CardComparer();
+                Console.WriteLine("\n...sorting the cards...\n");
+                cards.Sort(comparer);
+                PrintCards(cards);
+            }
         }
         private static Card RandomCard()
         {
